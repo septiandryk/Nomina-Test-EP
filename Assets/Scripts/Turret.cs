@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Turret : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class Turret : MonoBehaviour
     public GameObject bolaAir;
     public GameObject bolaTanah;
 
+    public GameObject txtApi;
+    public GameObject txtAir;
+    public GameObject txtTanah;
+
     private bool api;
     private bool air;
     private bool tanah;
@@ -28,6 +33,7 @@ public class Turret : MonoBehaviour
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
         api = true;
+        txtApi.SetActive(true);
     }
 
     void Update()
@@ -86,11 +92,12 @@ public class Turret : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("Api!");
                 api = false;
                 air = true;
                 tanah = false;
                 canSwitch = false;
+                txtApi.SetActive(false);
+                txtAir.SetActive(true);
             }
         }
 
@@ -98,11 +105,12 @@ public class Turret : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("Air!");
                 api = false;
                 air = false;
                 tanah = true;
                 canSwitch = false;
+                txtAir.SetActive(false);
+                txtTanah.SetActive(true);
             }
         }
 
@@ -110,11 +118,12 @@ public class Turret : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("Tanah!");
                 api = true;
                 air = false;
                 tanah = false;
                 canSwitch = false;
+                txtTanah.SetActive(false);
+                txtApi.SetActive(true);
             }
         }
     }
